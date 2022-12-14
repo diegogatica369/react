@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import {useNavigate} from "react-router-dom"
 import {ButtonComponent, TableUserComponent, FormUserComponent} from "../components"
 
+//ingreso manual de datos a la lista 
 const usuario1=[
     {
         nombre: 'Joseph',
@@ -26,7 +27,7 @@ const usuario1=[
             }
     ];
 
-const ListaUserPage = () => {
+const ListaUserPage = () => { 
     const navigate = useNavigate();
     const handleOnClick = useCallback(()=> navigate ("/",{}, [navigate]));
     //state vale lo mismo que usuario 1
@@ -49,7 +50,7 @@ const ListaUserPage = () => {
         //luego actualizamos el state
         setState(addUsuario);
     }
-
+    
     const userEdit =(usuarioEditado)=>{
         const editUser =user.map(usuario => (usuario.rut === usuarioEditado.rut ? usuarioEditado : usuario))
 
