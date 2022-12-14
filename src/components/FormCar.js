@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonComponent from "./Button";
 
 const FormCarComponent = () => {
     return(
@@ -29,6 +30,7 @@ const FormCarComponent = () => {
         <label for="valor">Valor</label>
         <input type="taxt" name="etiquetaValorAuto" id="valor" placeholder="Valor del auto?"/>
         </form>
+        <ButtonComponent infoButton={'Registrar Auto'}/>  
             </center>
         </div>
     )

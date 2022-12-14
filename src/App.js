@@ -1,6 +1,6 @@
 import React from "react";
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import { HomePage } from "./pages";
+import { AutoPage, HomePage, ListaUserPage, ListaCarPage } from "./pages";
 
 const App =()=>{
   return(
@@ -10,6 +10,9 @@ const App =()=>{
     <Routes>
         {/* especificamos ruta */}
         <Route path="/" element={<HomePage/>}/>
+        <Route path="/Auto" element={<AutoPage/>}/>
+        <Route path="/ListaUser" element={<ListaUserPage/>}/>
+        <Route path="/ListaCar" element={<ListaCarPage/>}/>
     </Routes>
     </BrowserRouter>
   )

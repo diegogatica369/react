@@ -1,5 +1,8 @@
 import React from "react";
-const TableUserComponent = () => {
+import ButtonComponent from "./Button";
+
+
+const TableUserComponent = ({usuarios, deleteUser, setUsuarioEditado, userEdit}) => {
   return (
     <table class="table">
       <thead>
@@ -13,22 +16,34 @@ const TableUserComponent = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>@marcianeke</td>
-          <td>Marcianeke Simpson</td>
-          <td>223334442</td>
-          <td>marcianeke@corte.cl</td>
-          <td>?</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>@jordan23</td>
-          <td>Jordan Veintitres</td>
-          <td>998887776</td>
-          <td>jordan23@corte.cl</td>
-          <td>?</td>
-        </tr>
+        {usuarios.map(usuario=>(
+                  <tr>
+                  <th scope="row">1</th>
+                  <td>{usuario.nick}</td>
+                  <td>{usuario.nombre} {usuario.apellido}</td>
+                  <td>{usuario.rut}</td>
+                  <td>{usuario.correo}</td>
+                  <td><button
+                type="button"
+                class="btn btn-primary"
+                onClick={() => {
+                deleteUser(usuario.rut);
+                }}
+                >
+                Eliminar
+                </button>
+                <button
+                type="button"
+                class="btn btn-warning"
+                onClick={() => {
+                setUsuarioEditado(usuario);
+                }}
+                >
+                Editar
+                </button></td>
+                </tr>
+        ))}
+
       </tbody>
     </table>
   );

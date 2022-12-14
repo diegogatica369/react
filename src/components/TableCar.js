@@ -1,6 +1,8 @@
 import React from "react";
+import ButtonComponent from "./Button";
 
-const TableCarComponent = () => {
+
+const TableCarComponent = ({autos, deleteAuto}) => {
   return (
     <div>
         <br/>
@@ -18,24 +20,25 @@ const TableCarComponent = () => {
           </tr>
         </thead>
         <tbody>
+        {autos.map(auto=>(
           <tr>
             <th scope="row">1</th>
-            <td>Jordan Veintitres</td>
-            <td>Chevrolet</td>
-            <td>Spark</td>
-            <td>2012</td>
-            <td>BB-BB-10</td>
-            <td>?</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Marcianeke Simpson</td>
-            <td>Subaru</td>
-            <td>Impreza</td>
-            <td>1999</td>
-            <td>MM-MM-69</td>
-            <td>?</td>
-          </tr>
+            <td>{auto.propietario}</td>
+            <td>{auto.marca}</td>
+            <td>{auto.modelo}</td>
+            <td>{auto.año}</td>
+            <td>{auto.patente}</td>
+            <td><button
+                type="button"
+                class="btn btn-primary"
+                onClick={() => {
+                deleteAuto(auto.modelo);
+                }}
+                >
+                Eliminar
+                </button></td>
+                </tr>
+                ))}
         </tbody>
       </table>
     </div>
