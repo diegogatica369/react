@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {useNavigate} from "react-router-dom"
 import {ButtonComponent, TableUserComponent, FormUserComponent} from "../components"
-
+import { getAllUsers, addUser, editUser, deleteUser } from "../service/User";
 //ingreso manual de datos a la lista 
 const usuario1=[
     {
@@ -34,28 +34,57 @@ const ListaUserPage = () => {
     //genera una funcion setteadora que permite cambiar los datos de usuario1 sin afectarlo directamente
     const [user, setState] = useState(usuario1);
     const [usuarioEditado, setUsuarioEditado] = useState(null);
+
+    useEffect(()=>{
+        getUsers();
+    },[])
+
+    const getUsers =async()=>{
+        const usuariosBD = await getAllUsers();
+        setState(usuariosBD);
+    }
     
-    const userDelete =(rutUsuario)=>{
+    const userAdd = async(usuarioAgregado) =>{ 
+        //en esta linea agregamos un usuario a la base de datos
+        const usuarioBD = await addUser(usuarioAgregado);
+        //aqui haremos que la tabla de actualice
+        getUsers();
+      }
+    
+    const userEdit = async(usuarioEditado) =>{
+        const usuarioBD = await editUser(usuarioEditado);
+        getUsers();
+    }
+
+    const userDelete = async(idUsuario)=>{
+        const usuarioBD = await deleteUser(idUsuario);
+        getUsers();
+    }
+
+    // SE COMENTAN ESTAS FUNCIONES YA QUE HAREMOS UNAS QUE APUNTEN A LAS APIS
+
+
+   /*  const userDelete =(rutUsuario)=>{
         //esta funcion filtra mi lista de usuarios
         const changeUser = user.filter(usuario => usuario.rut != rutUsuario);
         //al momento de ocupar la funcion setState, le cambio el valor TEMPORAL a mis usuarios
         setState(changeUser)
-    }
+    } */
 
-    const userAdd =(usuario)=>{
+   /*  const userAdd =(usuario)=>{
         const addUsuario =[
             //mantenme los datos que tengo en user y agregame lo que yo te entrego aqui (usuario)
             ...user, usuario 
         ]
         //luego actualizamos el state
         setState(addUsuario);
-    }
+    } */ // aqui seria ingresar datos manualmente
     
-    const userEdit =(usuarioEditado)=>{
+   /*  const userEdit =(usuarioEditado)=>{
         const editUser =user.map(usuario => (usuario.rut === usuarioEditado.rut ? usuarioEditado : usuario))
 
         setState(editUser);
-    }
+    } */
 
 
     return(

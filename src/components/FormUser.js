@@ -3,16 +3,15 @@ import "../pages/Home.css"
 import ButtonComponent from "./Button";
 
 const initialUsuario ={
-    nombre:"",
-    apellido:"",
-    rut:"",
-    correo:"",
-    nick:""
+    name:"",
+    lastName:"",
+    email:"",
+    id:"",
 }
 
 const FormUserComponent = ({userAdd, usuarioEditado, setUsuarioEditado, userEdit}) => {
     const [usuario, setUsuario] = useState(initialUsuario);
-    const {nombre, apellido, rut, correo, nick} = usuario
+    const {name, lastName, email, id} = usuario
 
     //el hook useEffect siempre esta pendiente de si la variable que tiene dentro de sus corchetes cambia el deebera hacer todo lo que tiene en su funcion dentro
     //CONSIDERACION siempre corre al menos 1 vez cuando la pagina carga por primera vez
@@ -22,11 +21,10 @@ const FormUserComponent = ({userAdd, usuarioEditado, setUsuarioEditado, userEdit
     }else{
         setUsuario(
             {
-                nombre:"",
-                apellido:"",
-                rut:"",
-                correo:"",
-                nick:""
+                name:"",
+                LastName:"",
+                email:"",
+                id:""
             }
         )
     }
@@ -56,20 +54,17 @@ const FormUserComponent = ({userAdd, usuarioEditado, setUsuarioEditado, userEdit
             <h1><b>REGISTRO NUEVO USUARIO</b></h1>
         <form class="cssusuario">
             {usuarioEditado!==null ? <h1>Editar Usuario</h1>:<h1>Ingrese Usuario</h1>}
-        <label for="nameuser">Nombre de Usuario</label>
-        <input type="text" name="nick" id="nameuser" placeholder="@nombreusuario123" value={nick} onChange={handleInputChange}/> 
+        <label for="nameuser">id</label>
+        <input type="text" name="id" id="id" value={id} onChange={handleInputChange} disabled/> 
         <br/>
         <label for="name">Nombre</label>
-        <input type="text" name="nombre" id="name" placeholder="Elba" value={nombre} onChange={handleInputChange}/> 
+        <input type="text" name="name" id="name" placeholder="Elba" value={name} onChange={handleInputChange}/> 
         <br/>
         <label for="name">Apellido</label>
-        <input type="text" name="apellido" id="apellido" placeholder="Calao" value={apellido} onChange={handleInputChange}/> 
-        <br/>
-        <label for="number">Rut</label>
-        <input type="number" name="rut" id="number" placeholder="245000003" value={rut} onChange={handleInputChange}/>
+        <input type="text" name="lastName" id="lastName" placeholder="Calao" value={lastName} onChange={handleInputChange}/> 
         <br/>
         <label for="correo">Correo</label>
-        <input type="email" name="correo" id="correo" placeholder="ElbaCalao@panconmayo.cl" value={correo} onChange={handleInputChange}/>
+        <input type="email" name="email" id="email" placeholder="ElbaCalao@panconmayo.cl" value={email} onChange={handleInputChange}/>
         <div>
         {usuarioEditado !== null ? (
           <button

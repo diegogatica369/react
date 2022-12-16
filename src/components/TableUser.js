@@ -7,8 +7,8 @@ const TableUserComponent = ({usuarios, deleteUser, setUsuarioEditado, userEdit})
     <table class="table">
       <thead>
         <tr>
+          <th scope="col">#</th>
           <th scope="col">id</th>
-          <th scope="col">Usuario</th>
           <th scope="col">Nombre</th>
           <th scope="col">Rut</th>
           <th scope="col">Correo</th>
@@ -19,15 +19,15 @@ const TableUserComponent = ({usuarios, deleteUser, setUsuarioEditado, userEdit})
         {usuarios.map(usuario=>(
                   <tr>
                   <th scope="row">1</th>
-                  <td>{usuario.nick}</td>
-                  <td>{usuario.nombre} {usuario.apellido}</td>
+                  <td>{usuario.id}</td>
+                  <td>{usuario.name} {usuario.lastName}</td>
                   <td>{usuario.rut}</td>
-                  <td>{usuario.correo}</td>
+                  <td>{usuario.email}</td>
                   <td><button
                 type="button"
                 class="btn btn-primary"
                 onClick={() => {
-                deleteUser(usuario.rut);
+                deleteUser(usuario.id);
                 }}
                 >
                 Eliminar
